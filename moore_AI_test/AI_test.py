@@ -7,6 +7,7 @@ import numpy as np
 import tensorflow as tf
 import tensorflow_hub as hub
 
+img_path = '/Users/sasakimoore/Documents/GitHub/ItemFinder/moore_AI_test/sanple_image/dfed1914c383418be6bd1544234f36b6_1.jpg'
 
 class PoseEstimator:
     """入力画像から骨格のキーポイントを返す。"""
@@ -48,14 +49,15 @@ if __name__ == "__main__":
 
     import cv2
 
-    # 引数の設定
-    parser = argparse.ArgumentParser()
+    # # 引数の設定
+    # parser = argparse.ArgumentParser()
 
-    parser.add_argument("image_path", help="実験対象の画像へのパス")
+    # parser.add_argument("image_path", help="実験対象の画像へのパス")
 
-    args = parser.parse_args()
+    # args = parser.parse_args()
 
-    img = cv2.imread(args.image_path)
+    # img = cv2.imread(args.image_path)                                           #?画像パス
+    img = cv2.imread(img_path)                                                      
 
     # モデルの初期化
     pe = PoseEstimator()
@@ -65,7 +67,8 @@ if __name__ == "__main__":
 
     # 実行結果を保存
     drwaed_img = pe.draw_prediction_on_image(img, keypoints=keypoints)
-    cv2.imwrite(f"{args.image_path.split('.')[0]}_results.png", drwaed_img)
+    # cv2.imwrite(f"{args.image_path.split('.')[0]}_results.png", drwaed_img)     #?画像パス
+    cv2.imwrite(f"{img_path.split('.')[0]}_results.png", drwaed_img)     #?画像パス
 
     # 出力
     h, w, _ = drwaed_img.shape
