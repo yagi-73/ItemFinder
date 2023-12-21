@@ -1,6 +1,8 @@
 #? This is moore's AI test file.
 #! Check!!! install this library.
 #? pip3 install matplotlib opencv-python tensorflow tensorflow-hub
+#!! CERTIFICATE_VERIFY_FAILED ↓
+###   https://stackoverflow.com/questions/50236117/scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org/53310545#53310545   ###
 
 
 import numpy as np
@@ -14,7 +16,7 @@ class PoseEstimator:
 
     def __init__(self) -> None:
         # Download the model from TF Hub.
-        model = hub.load("https://tfhub.dev/google/movenet/singlepose/lightning/4")
+        model = hub.load("https://www.kaggle.com/models/google/movenet/frameworks/TensorFlow2/variations/singlepose-lightning/versions/4")
         self.movenet = model.signatures["serving_default"]
 
     def predict(self, target_image: np.ndarray) -> np.ndarray:
