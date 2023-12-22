@@ -10,4 +10,4 @@ db = SQLAlchemy(app)
 app.register_blueprint(homes_controller, url_prefix="/")
 
 if __name__ == "__main__":
-    app.run(host = '0.0.0.0', port = 5001, debug=True)
+    app.run(host = '0.0.0.0', port = 5001, debug=False)
