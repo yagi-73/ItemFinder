@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お勧めの洋服</title>
+    {# <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> #}
+    <link rel="stylesheet" href="/static/style/style.css">
+
+</head>
+<body>
+
+
+    <div class="container">
+
+        <p class="logo">
+            <img src="{{ url_for('static', filename=img5) }}" alt="お店のロゴ">
+        </p>
+        
+        <h1>お勧めの洋服</h1>
+        <div class="image-container">
+            <div class="image-wrapper">
+                <img src="{{ url_for('static', filename=img1) }}" alt="洋服1">
+                <p class="img-txt">変数代入</p>
+            </div>
+            <div class="image-wrapper">
+                <img src="{{ url_for('static', filename=img2) }}" alt="洋服2">
+                <p class="img-txt">変数代入</p>
+            </div>
+            <div class="image-wrapper">
+                <img src="{{ url_for('static', filename=img3) }}" alt="洋服3">
+                <p class="img-txt">変数代入</p>
+            </div>
+            <div class="image-wrapper">
+                <img src="{{ url_for('static', filename=img4) }}" alt="洋服4">
+                <p class="img-txt">変数代入</p>
+            </div>
+        </div>
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+        <p>*店内画像を表示します*   </p>    
+        
+        <div class="shop-floor">
+            <img src="{{ url_for('static', filename=img6    ) }}" alt="店内画像">
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+
