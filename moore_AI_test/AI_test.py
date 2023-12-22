@@ -46,7 +46,7 @@ class PoseEstimator:
         return draw_prediction_on_image(target_image, keypoints)
 
 
-if __name__ == "__main__":
+def st_search(img_path):
     import argparse
 
     import cv2
@@ -81,3 +81,5 @@ if __name__ == "__main__":
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+if __name__ == "__main__":
+    st_search(img_path=img_path)
