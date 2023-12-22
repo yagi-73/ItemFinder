@@ -1,0 +1,27 @@
+#capture {
+    width: 96%;
+    padding: 28px;
+    max-width: 500px;
+    margin: 40px auto;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 0px rgba(200, 200, 200, 1);
+}
+
+label {
+    display: block;
+    width: 320px;
+    margin: 0 auto;
+    padding: 10px 0;
+    text-align: center;
+    border: 0;
+    box-shadow: none;
+    color: #fff;
+    font-size: 1rem;
+    background-color: black;
+    cursor: pointer;
+}
+
+input {
+    display: none;
+}

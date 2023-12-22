@@ -2,6 +2,9 @@
 
 {% block body %}
 
-<h1>Top画面です！</h1>
+<div id="capture">
+    <label for="upload">写真を撮影して骨格診断を開始する</label>
+    <input id="upload" type="file" name="image" accept="image/*" capture="camera">
+</div>
 
 {% endblock %}
