@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
-
+{% block head %}
+    <link rel="stylesheet" href="./itemFinder.css">
+{% endblock %}
 {% block body %}
 
-<div id="capture">
+<div class="capture">
     <label for="upload">写真を撮影して骨格診断を開始する</label>
     <input id="upload" type="file" name="image" accept="image/*" capture="camera">
 </div>
+
+
 
 {% endblock %}
