@@ -1,11 +1,13 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from database import db
+from models import *
+from flask_migrate import Migrate
 from controllers.homes_controller import homes_controller
 
 app = Flask(__name__)
-app.config.from_object('ItemFinder.config')
-
-db = SQLAlchemy(app)
+app.config.from_pyfile('config.py')
+db.init_app(app)
+migrate = Migrate(app, db)
 
 app.register_blueprint(homes_controller, url_prefix="/")
 
