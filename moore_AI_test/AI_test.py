@@ -1,7 +1,5 @@
 #? This is moore's AI test file.
-#! Check!!! install this library.
-#? pip3 install matplotlib opencv-python tensorflow tensorflow-hub
-#!! CERTIFICATE_VERIFY_FAILED ↓
+##! Check!!! install this library.##? pip3 install matplotlib opencv-python tensorflow tensorflow-hub
 ###   https://stackoverflow.com/questions/50236117/scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org/53310545#53310545   ###
 
 
@@ -9,11 +7,10 @@ import numpy as np
 import tensorflow as tf
 import tensorflow_hub as hub
 
-img_path = '/Users/sasakimoore/Documents/GitHub/ItemFinder/moore_AI_test/sanple_image/dfed1914c383418be6bd1544234f36b6_1.jpg'
+img_path = 'moore_AI_test/sanple_image/dfed1914c383418be6bd1544234f36b6_1.jpg'
 
 class PoseEstimator:
-    """入力画像から骨格のキーポイントを返す。"""
-
+    
     def __init__(self) -> None:
         # Download the model from TF Hub.
         model = hub.load("https://www.kaggle.com/models/google/movenet/frameworks/TensorFlow2/variations/singlepose-lightning/versions/4")
@@ -47,7 +44,7 @@ class PoseEstimator:
 
 
 def st_search(img_path):
-    import argparse
+    # import argparse
 
     import cv2
 
@@ -68,18 +65,18 @@ def st_search(img_path):
     print(keypoints)
 
     # 実行結果を保存
-    drwaed_img = pe.draw_prediction_on_image(img, keypoints=keypoints)
-    # cv2.imwrite(f"{args.image_path.split('.')[0]}_results.png", drwaed_img)     #?画像パス
-    cv2.imwrite(f"{img_path.split('.')[0]}_results.png", drwaed_img)     #?画像パス
+    # drwaed_img = pe.draw_prediction_on_image(img, keypoints=keypoints)
+    # # cv2.imwrite(f"{args.image_path.split('.')[0]}_results.png", drwaed_img)     #?画像パス
+    # cv2.imwrite(f"{img_path.split('.')[0]}_results.png", drwaed_img)     #?画像パス
 
-    # 出力
-    h, w, _ = drwaed_img.shape
-    concat_img = cv2.hconcat([cv2.resize(img, (w, h)), drwaed_img])
-    cv2.imshow("smaple", concat_img)
+    # # 出力
+    # h, w, _ = drwaed_img.shape
+    # concat_img = cv2.hconcat([cv2.resize(img, (w, h)), drwaed_img])
+    # cv2.imshow("smaple", concat_img)
 
-    # キーが押されるまで待ち続ける。
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # # キーが押されるまで待ち続ける。
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     st_search(img_path=img_path)
