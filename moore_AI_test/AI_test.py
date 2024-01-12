@@ -7,7 +7,23 @@ import numpy as np
 import tensorflow as tf
 import tensorflow_hub as hub
 
-img_path = 'moore_AI_test/sanple_image/dfed1914c383418be6bd1544234f36b6_1.jpg'
+img_path = '/Users/moore/git/ItemFinder/moore_AI_test/sanple_image/61obz82MvTL._AC_UF894,1000_QL80_.jpg'
+
+def scoreFinder(score):
+    ans = []
+    sample = [[0.1,0.2,0.25,0.3],[0.35,0.38,0.4,0.45,0.48],[0.3,0.5,0.55,0.6,0.7]]
+    for i in range(3):
+        if float(score[i]) <= sample[i][0]:
+            ans.append('A')
+        elif sample[i][1] < float(score[i]) <= sample[i][2]:
+            ans.append('B')
+        elif sample[i][2] < float(score[i]) <= sample[i][3]:
+            ans.append('C')
+        elif sample[i][3] < int(score[i]) <= sample[i][4]:
+            ans.append('D')
+        else:
+            ans.append('E')
+    return ans
 
 class PoseEstimator:
     
@@ -76,7 +92,8 @@ def st_search(img_path):
     leg_ave = (l_leg_len + r_leg_len)/2
     
     # print(keypoints[0,0,0])
-    return([shoulder_width, arm_ave, leg_ave])
+    ans = scoreFinder([shoulder_width, arm_ave, leg_ave])
+    return(ans)
 
     # 実行結果を保存
     # drwaed_img = pe.draw_prediction_on_image(img, keypoints=keypoints)
@@ -93,5 +110,5 @@ def st_search(img_path):
     # cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    score = st_search(img_path=img_path)
-    print('shoulder width : ', score[0],'\n arm length :',score[1],'\n leg length :',score[2])
+    ans = st_search(img_path=img_path)
+    print(' inner : ', ans[0],'\n outer :',ans[1],'\n pants :',ans[2])
