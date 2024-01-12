@@ -56,13 +56,27 @@ def st_search(img_path):
     # args = parser.parse_args()
 
     # img = cv2.imread(args.image_path)                                           #?画像パス
+    print('img path :', img_path)
     img = cv2.imread(img_path)                                                      
 
     # モデルの初期化
+    print('model clearing now.')
     pe = PoseEstimator()
     # 画像のキーポイントを取得
     keypoints = pe.predict(img)
-    print(keypoints)
+    
+    shoulder_width = np.sqrt((keypoints[0,0,5,0]-keypoints[0,0,6,0])**2 + (keypoints[0,0,5,1]-keypoints[0,0,6,1])**2 + ((keypoints[0,0,5,2]-keypoints[0,0,6,2])**2))
+    
+    l_arm_len = np.sqrt((keypoints[0,0,5,0]-keypoints[0,0,7,0])**2 + (keypoints[0,0,5,1]-keypoints[0,0,7,1])**2 + ((keypoints[0,0,5,2]-keypoints[0,0,7,2])**2)) + np.sqrt((keypoints[0,0,9,0]-keypoints[0,0,7,0])**2 + (keypoints[0,0,9,1]-keypoints[0,0,7,1])**2 + ((keypoints[0,0,9,2]-keypoints[0,0,7,2])**2))
+    r_arm_len = np.sqrt((keypoints[0,0,8,0]-keypoints[0,0,6,0])**2 + (keypoints[0,0,8,1]-keypoints[0,0,6,1])**2 + ((keypoints[0,0,8,2]-keypoints[0,0,10,2])**2)) + np.sqrt((keypoints[0,0,8,0]-keypoints[0,0,10,0])**2 + (keypoints[0,0,8,1]-keypoints[0,0,10,1])**2 + ((keypoints[0,0,8,2]-keypoints[0,0,10,2])**2))
+    arm_ave = (l_arm_len + r_arm_len)/2
+    
+    l_leg_len = np.sqrt((keypoints[0,0,11,0]-keypoints[0,0,13,0])**2 + (keypoints[0,0,11,1]-keypoints[0,0,13,1])**2 + ((keypoints[0,0,11,2]-keypoints[0,0,13,2])**2)) + np.sqrt((keypoints[0,0,13,0]-keypoints[0,0,15,0])**2 + (keypoints[0,0,13,1]-keypoints[0,0,15,1])**2 + ((keypoints[0,0,13,2]-keypoints[0,0,15,2])**2))
+    r_leg_len = np.sqrt((keypoints[0,0,12,0]-keypoints[0,0,14,0])**2 + (keypoints[0,0,12,1]-keypoints[0,0,14,1])**2 + ((keypoints[0,0,12,2]-keypoints[0,0,14,2])**2)) + np.sqrt((keypoints[0,0,14,0]-keypoints[0,0,16,0])**2 + (keypoints[0,0,14,1]-keypoints[0,0,16,1])**2 + ((keypoints[0,0,14,2]-keypoints[0,0,16,2])**2))
+    leg_ave = (l_leg_len + r_leg_len)/2
+    
+    # print(keypoints[0,0,0])
+    return([shoulder_width, arm_ave, leg_ave])
 
     # 実行結果を保存
     # drwaed_img = pe.draw_prediction_on_image(img, keypoints=keypoints)
@@ -79,4 +93,5 @@ def st_search(img_path):
     # cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    st_search(img_path=img_path)
+    score = st_search(img_path=img_path)
+    print('shoulder width : ', score[0],'\n arm length :',score[1],'\n leg length :',score[2])
