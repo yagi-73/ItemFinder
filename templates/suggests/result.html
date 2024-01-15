@@ -14,11 +14,19 @@
   </p>
 
   <h1>お勧めの洋服</h1>
+
+  <div class="image-detail-container">
+    {%for item in items%}
+      <div class="detail-wrapper">
+        <h2>{{ item.name }}</h2>
+        <p>{{ item.price }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
   <div class="image-container">
     {% for item in items %}
       <div class="image-wrapper">
-        <h2>{{ item.name }}</h2>
-        <p>{{ item.price }}</p>
         <p>{{ item.url }}</p>
         <image src="{{ item.image_url }}" alt="商品画像">
       </div>
