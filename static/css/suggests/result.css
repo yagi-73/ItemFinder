@@ -64,5 +64,13 @@ h1{
 }
 
 .shop-floor{
-  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.icon-overlay {
+  position: absolute;
+  top: 87%;
+  left: 60%;
 }

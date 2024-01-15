@@ -25,3 +25,9 @@
 .capture input {
     display: none;
 }
+
+#preview {
+    width: 96%;
+    max-width: 500px;
+    margin: 0 auto;
+}
