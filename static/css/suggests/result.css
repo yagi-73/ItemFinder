@@ -69,8 +69,6 @@ h1{
 
 .icon-overlay {
   position: absolute;
-  /* display: none; */
+  display: none;
   color: red;
-  top: 90%;
-  left: 74%;
 }
