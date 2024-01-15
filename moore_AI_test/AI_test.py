@@ -14,15 +14,15 @@ def scoreFinder(score):
     sample = [[0.1,0.2,0.25,0.3],[0.35,0.38,0.4,0.45,0.48],[0.3,0.5,0.55,0.6,0.7]]
     for i in range(3):
         if float(score[i]) <= sample[i][0]:
-            ans.append('A')
+            ans.append(1)
         elif sample[i][1] < float(score[i]) <= sample[i][2]:
-            ans.append('B')
+            ans.append(2)
         elif sample[i][2] < float(score[i]) <= sample[i][3]:
-            ans.append('C')
+            ans.append(3)
         elif sample[i][3] < int(score[i]) <= sample[i][4]:
-            ans.append('D')
+            ans.append(4)
         else:
-            ans.append('E')
+            ans.append(5)
     return ans
 
 class PoseEstimator:
