@@ -6,6 +6,7 @@ class Item(db.Model):
   __tablename__ = 'items'
 
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+  genre_id = db.Column(db.Integer, nullable=False)
   name = db.Column(db.String(30), nullable=False)
   price = db.Column(db.Integer, nullable=False)
   display_area_x = db.Column(db.Integer, nullable=False)
