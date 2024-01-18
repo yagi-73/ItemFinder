@@ -51,6 +51,10 @@ h1{
   margin-bottom: 0px;
 }
 
+.image-detail-container p{
+  font-size: 40px;
+}
+
 .image-wrapper {
   width: 20%; 
   margin-bottom: 5%;
