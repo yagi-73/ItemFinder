@@ -6,6 +6,13 @@
 import numpy as np
 import tensorflow as tf
 import tensorflow_hub as hub
+from PIL import Image
+
+class RecommendedFeature:
+    def __init__(self, shirts, jacket, pants):
+        self.shirts = shirts
+        self.jacket = jacket
+        self.pants = pants
 
 img_path = '/Users/moore/git/ItemFinder/moore_AI_test/sanple_image/61obz82MvTL._AC_UF894,1000_QL80_.jpg'
 
@@ -14,15 +21,15 @@ def scoreFinder(score):
     sample = [[0.1,0.2,0.25,0.3],[0.35,0.38,0.4,0.45,0.48],[0.3,0.5,0.55,0.6,0.7]]
     for i in range(3):
         if float(score[i]) <= sample[i][0]:
-            ans.append(1)
+            ans.append('A')
         elif sample[i][1] < float(score[i]) <= sample[i][2]:
-            ans.append(2)
+            ans.append('B')
         elif sample[i][2] < float(score[i]) <= sample[i][3]:
-            ans.append(3)
+            ans.append('C')
         elif sample[i][3] < int(score[i]) <= sample[i][4]:
-            ans.append(4)
+            ans.append('D')
         else:
-            ans.append(5)
+            ans.append('E')
     return ans
 
 class PoseEstimator:
@@ -59,7 +66,7 @@ class PoseEstimator:
         return draw_prediction_on_image(target_image, keypoints)
 
 
-def st_search(img_path):
+def st_search(file):
     # import argparse
 
     import cv2
@@ -71,15 +78,15 @@ def st_search(img_path):
 
     # args = parser.parse_args()
 
-    # img = cv2.imread(args.image_path)                                           #?画像パス
-    print('img path :', img_path)
-    img = cv2.imread(img_path)                                                      
+    # img = cv2.imread(img_path)
+    image = Image.open(file)
+    image_np = np.array(image)
 
     # モデルの初期化
     print('model clearing now.')
     pe = PoseEstimator()
     # 画像のキーポイントを取得
-    keypoints = pe.predict(img)
+    keypoints = pe.predict(image_np)
     
     shoulder_width = np.sqrt((keypoints[0,0,5,0]-keypoints[0,0,6,0])**2 + (keypoints[0,0,5,1]-keypoints[0,0,6,1])**2 + ((keypoints[0,0,5,2]-keypoints[0,0,6,2])**2))
     
@@ -92,8 +99,9 @@ def st_search(img_path):
     leg_ave = (l_leg_len + r_leg_len)/2
     
     # print(keypoints[0,0,0])
-    ans = scoreFinder([shoulder_width, arm_ave, leg_ave])
-    return(ans)
+    shirts, jacket, pants = scoreFinder([shoulder_width, arm_ave, leg_ave])
+    recommended_feature = RecommendedFeature(shirts, jacket, pants)
+    return(recommended_feature)
 
     # 実行結果を保存
     # drwaed_img = pe.draw_prediction_on_image(img, keypoints=keypoints)
