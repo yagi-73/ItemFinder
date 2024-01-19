@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-  <link rel="stylesheet" href="/static/css/result.css">
+  <link rel="stylesheet" href="/static/css/suggests/result.css">
 {% endblock %}
 
 {% block body %}
@@ -15,28 +15,39 @@
 
   <h1>お勧めの洋服</h1>
 
-  <div class="image-detail-container">
-    {%for item in items%}
-      <div class="detail-wrapper">
-        <h2>{{ item.name }}</h2>
-        <p>{{ item.price }}</p>
-      </div>
-    {% endfor %}
+  <div class="container item-container">
+    <div class="row">
+      {%for item in items%}
+        <div class="item col-4"
+              onclick="selectItem(this)"
+              data-left="{{ item.display_area_x }}"
+              data-top="{{ item.display_area_y }}"
+          >
+          <image src="{{ item.image_url }}" alt="商品画像">
+          <h4 class="mt-3">{{ item.name }}</h4>
+          <p class="h5">￥{{ item.price }}</p>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 
-  <div class="image-container">
-    {% for item in items %}
-      <div class="image-wrapper">
-        <p>{{ item.url }}</p>
-        <image src="{{ item.image_url }}" alt="商品画像">
-      </div>
-    {% endfor %}
-  </div>
-
-  <p>*店内画像を表示します*   </p>
   <div class="shop-floor">
-    <img src="/static/images/shop_floor.jpg" alt="店内画像">
+    <img src="/static/images/shop_floor.png" alt="店内画像" class="w-100">
+    <i class="fa-solid fa-location-dot fa-2xl icon-overlay"></i>
   </div>
 </div>
 
+<script>
+  function selectItem(element) {
+    // 選択されたアイテムの icon-overlay を表示
+    var iconOverlay = $('.icon-overlay');
+    var top = $(element).data('top');
+    var left = $(element).data('left');
+    iconOverlay.css({
+      display: 'block',
+      top: `${top}%`,
+      left: `${left}%`,
+    });
+  }
+</script>
 {% endblock %}

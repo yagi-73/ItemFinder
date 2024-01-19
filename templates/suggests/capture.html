@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/suggests/capture.css">
+  <script src="/static/js/suggests/capture.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <p class="logo">
+    <img src="/static/images/shop_logo.jpg" alt="お店のロゴ">
+  </p>
+  <form id="captureForm" action="analyze" method="POST" enctype="multipart/form-data">
+    <div class="capture">
+      <label for="upload">写真を撮影して骨格診断を開始する</label>
+      <input id="upload" type="file" name="image" accept="image/*" capture="user" onchange="previewImage(this)">
+    </div>
+
+    <img id="preview" src="#" alt="プレビュー画像" style="display:none;">
+
+    <div class="text-center mt-3">
+      <button type="submit" class="btn btn-success">診断する</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

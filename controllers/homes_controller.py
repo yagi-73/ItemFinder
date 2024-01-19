@@ -5,7 +5,3 @@ homes_controller = Blueprint("homes_controller", __name__)
 @homes_controller.route("/")
 def top():
   return render_template("homes/top.html")
-
-@homes_controller.route("itemFinder")
-def itemFinder():
-  return render_template("itemFinder.html")
