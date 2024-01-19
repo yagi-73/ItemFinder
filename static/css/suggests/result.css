@@ -2,7 +2,6 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #dbdbdb;
   padding: 0;
   box-sizing: border-box;
 }
@@ -29,10 +28,9 @@ h1{
 
 .container {
   max-width: 1200px;
-  margin: 20px auto;
   padding: 20px;
   background-color: #c44c2c;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 /* .image-container, .item-container {

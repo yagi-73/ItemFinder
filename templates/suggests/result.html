@@ -13,12 +13,12 @@
     <img src="/static/images/shop_logo.jpg" alt="お店のロゴ">
   </p>
 
-  <h1>お勧めの洋服</h1>
+  <h1>おすすめの洋服</h1>
 
   <div class="container item-container">
     <div class="row">
       {%for item in items%}
-        <div class="item col-4"
+        <div class="item col-4 text-center"
               onclick="selectItem(this)"
               data-left="{{ item.display_area_x }}"
               data-top="{{ item.display_area_y }}"
