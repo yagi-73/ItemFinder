@@ -15,3 +15,12 @@ function previewImage(input) {
     preview.style.display = 'none';
   }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  // フォームがサブミットされたときに呼び出される関数
+  document.getElementById('captureForm').addEventListener('submit', function () {
+    // ローダーを表示
+    document.getElementById('loader').style.display = 'block';
+    // 背景色を設定
+  });
+});
