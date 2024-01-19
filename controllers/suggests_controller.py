@@ -23,4 +23,4 @@ def analyze():
 @suggests_controller.route("result")
 def result():
   items = Item.query.all()
-  return render_template("suggests/result.html", items = items)
+  return render_template("suggests/result.html", items=items)
